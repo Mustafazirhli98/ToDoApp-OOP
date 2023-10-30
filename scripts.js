@@ -1,3 +1,4 @@
+let allInputs = document.querySelectorAll("input")
 let timeInput = document.querySelector("#timeInput")
 let taskInput = document.querySelector("#taskInput")
 let taskDetailInput = document.querySelector("#taskDetail")
@@ -6,6 +7,9 @@ let tbody = document.querySelector(".tbody")
 let timeError = document.querySelector(".time-error")
 let taskError = document.querySelector(".task-error")
 let table = document.querySelector(".table")
+
+
+
 //#region constructor
 class ToDo {
     constructor(time, task, taskDetail) {
@@ -27,14 +31,14 @@ class ToDo {
                         <div/>
                         </td>        
                     </tr>            
-                    <div class="taskDetail d-none"><div/>                
-                    `}
+                    <div class="taskDetail closed"><div/>                
+                    `
+    }
     removeToDoList = (deleteIcon) => {
         if (deleteIcon.classList.contains("deleteIcon")) {
             deleteIcon.parentElement.parentElement.parentElement.nextElementSibling.remove()
             deleteIcon.parentElement.parentElement.parentElement.remove()
         }
-
     }
     checkedTask = (checkbox) => {
         let taskColumn = checkbox.closest("td.task-column")
@@ -44,14 +48,12 @@ class ToDo {
     addTaskDetail = () => {
         let parentOfDetailDiv = tbody.lastElementChild;
         parentOfDetailDiv.textContent = `${this.taskDetail}`;
-        parentOfDetailDiv.classList.add("d-none");
-        if(this.taskDetail === "") {
-            parentOfDetailDiv.textContent = "Görev detayı bulunamadı."
+        parentOfDetailDiv.classList.add("closed");
+        if (this.taskDetail === "") {
+            parentOfDetailDiv.textContent = "Görev detayı yok."
         }
-
-
+        localStorage.setItem("taskDetail", this.taskDetail)
     }
-
 }
 
 //#endregion
@@ -103,7 +105,16 @@ table.addEventListener("click", (e) => {
 
 table.addEventListener("click", (e) => {
     if (e.target.classList.contains("dropdown")) {
-        e.target.parentElement.parentElement.parentElement.nextElementSibling.classList.toggle("d-none")
+        e.target.parentElement.parentElement.parentElement.nextElementSibling.classList.toggle("closed")
     }
 })
+const maxCharacters = 34;
+allInputs.forEach(input => {
+    input.addEventListener("keydown", (e) => {
+        if (e.target.value.length > maxCharacters && e.key.length === 1) {
+            e.preventDefault()
+        }
+    })
+})
 
+//TO DO :localStorage
