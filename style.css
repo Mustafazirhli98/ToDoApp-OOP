@@ -1,0 +1,108 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', 'sans-serif' ;
+}
+
+
+
+h5 {
+    font-size: 25px;
+}
+
+#form {
+    width: 420px;
+    height: 300px;
+    border: 1px solid rgba(0, 0, 0, 0.162);
+    padding: 20px;
+
+}
+
+label {
+    
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: rgb(98, 94, 94);
+}
+th {
+    
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* Form'un üzerine tıklandığında border renginin değişmesi için eklenecek. */
+.active {
+    border: 1px solid rgb(0, 0, 0);
+}
+
+button {
+    margin: 10px;
+}
+
+.buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table,
+th,
+td {
+    padding: 12px;
+}
+
+.deleteIcon {
+    cursor: pointer;
+    float: right;
+    margin-top: 3px;
+}
+
+.clearFloat {
+    clear: both;
+}
+
+
+
+.taskStat {
+    float: right;
+}
+
+.checkbox {
+    margin-top: 4px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.checkedTask {
+    text-decoration: line-through;
+    text-decoration-color:green ;
+}
+
+.form-control:focus {
+    box-shadow:none;
+    border-color: rgba(0, 0, 0, 0.286);
+}
+
+
+input {
+    font-size: 14px !important;
+}
+
+
+.dropdown {
+    margin-right: 20px;
+}
+
+.taskDetail {
+    background-color: rgb(235, 232, 232) !important;
+    border-radius: 0 0 5px 5px;
+    padding: 8px;
+    font-size: 12px;
+    width: 100%;
+}

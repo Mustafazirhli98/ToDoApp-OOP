@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@700&family=Open+Sans&family=Outfit:wght@400;700&family=Poppins:ital,wght@0,700;1,400;1,800&family=Roboto:ital,wght@0,400;1,700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+
+
+    <div class="container p-5">
+        <h5>To Do List</h5>
+        <hr class="pb-5">
+        <div class="row main-row">
+            <div class="col-sm-5 left-section">
+                <form id="form">
+                    <div class="form-group">
+                        <label for="timeInput">Zaman Aralığı</label>
+                        <input autocomplete="off" class="form-control" type="text" name="timeInput" id="timeInput">
+                        <div class="time-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskInput">Görevler</label>
+                        <input autocomplete="off" class="form-control" type="text" name="taskInput" id="taskInput">
+                        <div class="task-error"></div>
+                    </div>
+                     <div class="form-group">
+                        <label for="taskDetail">Görev Detayı</label>
+                        <input autocomplete="off" class="form-control" type="text" name="taskDetail" id="taskDetail">
+                        <div class="detail-error"></div>
+                    </div>
+                    <div class="buttons">
+                        <button id="submit" type="submit" class="btn btn-dark text-light">Ekle</button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-sm-7 right-section">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Zaman Aralığı</th>
+                            <th>Görevler</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody">
+
+                    </tbody>
+                </table>
+                    <!-- <div class="clearFloat"></div> -->
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
