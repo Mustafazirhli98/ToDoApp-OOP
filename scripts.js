@@ -16,7 +16,7 @@ class ToDo {
         this.time = time;
         this.task = task;
         this.taskDetail = taskDetail;
-        this.taskId = Math.floor(Math.random()*10000)
+        this.taskId = Math.floor(Math.random() * 10000)
     }
 }
 
@@ -41,6 +41,9 @@ class UI {
         if (deleteIcon.classList.contains("deleteIcon")) {
             deleteIcon.parentElement.parentElement.parentElement.nextElementSibling.remove()
             deleteIcon.parentElement.parentElement.parentElement.remove()
+            ui.showAlertWarning("Görev kaldırıldı", "warning");
+
+
         }
     }
     checkedTask = (checkbox) => {
@@ -52,8 +55,8 @@ class UI {
         let parentOfDetailDiv = tbody.lastElementChild;
         parentOfDetailDiv.textContent = `${user.taskDetail}`;
         parentOfDetailDiv.classList.add("closed");
-        if (this.taskDetail === "") {
-            parentOfDetailDiv.textContent = "Görev detayı yok."
+        if(parentOfDetailDiv.textContent == "") {
+            parentOfDetailDiv.textContent="Görev detayı bulunmamakta."
         }
     }
     showAlertSuccess = (message, className) => {
@@ -137,8 +140,6 @@ btnSubmit.addEventListener("click", (e) => {
 table.addEventListener("click", (e) => {
 
     ui.removeToDoList(e.target);
-    ui.showAlertWarning("Görev kaldırıldı", "warning");
-
 })
 
 table.addEventListener("mouseover", (e) => {
