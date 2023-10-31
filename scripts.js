@@ -1,3 +1,4 @@
+//#region DOMvariables
 let allInputs = document.querySelectorAll("input")
 let timeInput = document.querySelector("#timeInput")
 let taskInput = document.querySelector("#taskInput")
@@ -7,10 +8,7 @@ let tbody = document.querySelector(".tbody")
 let timeError = document.querySelector(".time-error")
 let taskError = document.querySelector(".task-error")
 let table = document.querySelector(".table")
-
-
-let taskList = new Map()
-
+//#endregion
 
 //#region constructor
 class ToDo {
@@ -18,13 +16,17 @@ class ToDo {
         this.time = time;
         this.task = task;
         this.taskDetail = taskDetail;
+        this.taskId = Math.floor(Math.random()*10000)
     }
+}
+
+class UI {
     addToDoList = () => {
         tbody.innerHTML += `
                      <tr>
-                        <td >${this.time}</td>
+                        <td >${user.time}</td>
                         <td class="task-column">
-                        ${this.task}
+                        ${user.task}
                         <div class="taskStat">
                         <input class="checkbox" type="checkbox"/>
                         <i class="fa-solid fa-trash deleteIcon"></i>
@@ -48,7 +50,7 @@ class ToDo {
 
     addTaskDetail = () => {
         let parentOfDetailDiv = tbody.lastElementChild;
-        parentOfDetailDiv.textContent = `${this.taskDetail}`;
+        parentOfDetailDiv.textContent = `${user.taskDetail}`;
         parentOfDetailDiv.classList.add("closed");
         if (this.taskDetail === "") {
             parentOfDetailDiv.textContent = "Görev detayı yok."
@@ -62,6 +64,22 @@ class ToDo {
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
             <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
             </svg>
+        </div>
+        `
+        const row = document.querySelector(".row")
+        row.insertAdjacentHTML("beforebegin", alert)
+        setTimeout(() => {
+            document.querySelector(".alert").remove()
+        }, 2000)
+    }
+
+    showAlertWarning = (message, className) => {
+        let alert = `
+        <div class="alert alert-${className}" role="alert">
+            ${message}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+            </svg>  
         </div>
         `
         const row = document.querySelector(".row")
@@ -87,12 +105,15 @@ class ToDo {
             document.querySelector(".alert").remove()
         }, 2000)
     }
-
 }
-//#endregion
 
+//#endregion 
 
 let user = new ToDo()
+let ui = new UI()
+
+
+document.addEventListener("DOMContentLoaded", Storage.displayTasks);
 
 btnSubmit.addEventListener("click", (e) => {
     e.preventDefault();
@@ -103,21 +124,21 @@ btnSubmit.addEventListener("click", (e) => {
     timeInput.value = "";
     taskDetailInput.value = "";
     if (user.task === "" || user.time === "") {
-        user.showAlertDanger("Zaman aralığı ve Görev boş kalamaz", "danger")
+        ui.showAlertDanger("Zaman aralığı ve Görev boş kalamaz", "danger")
     }
     else {
-        user.addToDoList();
-        user.addTaskDetail();
-        user.showAlertSuccess("Görev Eklendi", "success")
+        ui.addToDoList();
+        ui.addTaskDetail(user);
+        ui.showAlertSuccess("Görev Eklendi", "success")
     }
-    taskList.set("time", user.time)
-    taskList.set("task", user.task)
-    taskList.set("taskDetail", user.taskDetail)
 })
 
 
 table.addEventListener("click", (e) => {
-    user.removeToDoList(e.target)
+
+    ui.removeToDoList(e.target);
+    ui.showAlertWarning("Görev kaldırıldı", "warning");
+
 })
 
 table.addEventListener("mouseover", (e) => {
@@ -135,7 +156,7 @@ table.addEventListener("mouseout", (e) => {
 table.addEventListener("click", (e) => {
     if (e.target.classList.contains("checkbox")) {
         let checkbox = e.target;
-        user.checkedTask(checkbox)
+        ui.checkedTask(checkbox)
     }
 })
 
@@ -152,6 +173,8 @@ allInputs.forEach(input => {
         }
     })
 })
+
+
 
 
 
